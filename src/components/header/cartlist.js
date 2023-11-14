@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-export const CartItems = ({cartitems,setCartitems }) => {
+export const CartItems = ({cartitems,setCartitems,setCardOpenc }) => {
   
     const incCartitems = (data) => {
         const updatedCart = cartitems.map((item) => {
@@ -40,6 +40,9 @@ export const CartItems = ({cartitems,setCartitems }) => {
         const afterremove=cartitems.filter((item)=>item.id!=id)
         setCartitems(afterremove)
         toast.error(`Item ${id} is deleted from the cart`);
+        if(cartitems.length<=1){
+          setCardOpenc(false)
+        }
       }
   return (
     <>

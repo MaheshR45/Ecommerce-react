@@ -34,7 +34,7 @@ const Cart = ({cartitems,setCartitems,cardOpenc,setCardOpenc}) => {
             <AiOutlineClose className='icon' />
           </button>
         </div>
-          <CartItems cartitems={cartitems} setCartitems={setCartitems}  />
+          <CartItems cartitems={cartitems} setCartitems={setCartitems} setCardOpenc={setCardOpenc}  />
         <div className='checkOut'>
           <button>
             <span>Priceed To Checkout</span>

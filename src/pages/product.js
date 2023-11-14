@@ -3,7 +3,7 @@ import { product } from "../assets/data/data";
 import "./product.css";
 import { ProductCart } from "./ProductCart";
 
-const Product = ({ addToCart, addToFavorites, searchQuery }) => {
+const Product = ({ cartitems,favitems,addToCart, addToFavorites, searchQuery }) => {
   // Filter products based on the searchQuery
   const filteredProducts = product.filter((item) => {
     const itemName = item.name.toLowerCase();
@@ -27,6 +27,8 @@ const Product = ({ addToCart, addToFavorites, searchQuery }) => {
               cover={item.cover}
               name={item.name}
               price={item.price}
+              cartitems={cartitems} 
+              favitems={favitems}
               addToCart={addToCart}
               addToFavorites={addToFavorites}
             />

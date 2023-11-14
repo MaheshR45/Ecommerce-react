@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Login = ({setisLoggIn}) => {
+const Login = ({setisLoggIn,setuserName}) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -33,6 +33,7 @@ const Login = ({setisLoggIn}) => {
     if (handleValidation()) {
       // Validation passed, you can perform further actions (e.g., login)
       setisLoggIn(true)
+      setuserName(formData.email)
     }
   };
 

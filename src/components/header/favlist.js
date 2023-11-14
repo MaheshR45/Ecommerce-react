@@ -1,12 +1,18 @@
 import React from "react"
 import { AiOutlineClose } from "react-icons/ai"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
-export const FavList = ({ favitems,setFavitems }) => {
+export const FavList = ({ favitems,setFavitems,setCardOpenf }) => {
 
   const removefav = (data) => {
     const updatedfavdata=favitems.filter((item)=>item.id!=data.id)
     setFavitems(updatedfavdata);
+    toast.error(`Item ${data.id} is deleted from the Wishlist`);
+    if(favitems.length<=1){
+      setCardOpenf(false)
+    }
   }
   return (
     <>
@@ -15,7 +21,7 @@ export const FavList = ({ favitems,setFavitems }) => {
         <div className='cartContent'>
           <div className='img'>
             <img src={item.cover} alt='' />
-            <button className='remove flexCenter'>
+            <button className='remove flexCenter'  onClick={()=>removefav(item)}>
               <AiOutlineClose />
             </button>
           </div>
@@ -24,8 +30,8 @@ export const FavList = ({ favitems,setFavitems }) => {
             <label htmlFor=''>Unit Price ${item.price}</label>
             <div className='price'>
               <div className='qty flexCenter'>
-                <button className='num'>{item.qty}</button>
-                <button className='minus' onClick={()=>removefav(item)}>
+                {/* <button className='num'></button> */}
+                <button className='' onClick={()=>removefav(item)}>
                   <AiOutlineClose />
                 </button>
               </div>

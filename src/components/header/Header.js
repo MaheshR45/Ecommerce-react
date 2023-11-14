@@ -7,7 +7,7 @@ import Cart from "./cart"
 import { User } from "./user"
 import Fav from "./fav"
 
- const Header = ({cartitems,setCartitems,favitems,setFavitems,setisLoggIn,handleSearch}) => {
+ const Header = ({userName,cartitems,setCartitems,favitems,setFavitems,setisLoggIn,handleSearch,setIsFavorite}) => {
   window.addEventListener("scroll", function () {
     const header = this.document.querySelector(".header")
     header.classList.toggle("active", this.window.scrollY > 100)
@@ -32,9 +32,9 @@ import Fav from "./fav"
             <input type='text'  onChange={handleSearch} placeholder='Search...' />
           </div>
           <div className='account flexCenter'>
-          <Fav favitems={favitems} setFavitems={setFavitems} cardOpenf={cardOpenf} setCardOpenf={setCardOpenf} />
+          <Fav favitems={favitems} setFavitems={setFavitems} cardOpenf={cardOpenf} setCardOpenf={setCardOpenf} setIsFavorite={setIsFavorite} />
           <Cart cartitems={cartitems} setCartitems={setCartitems} cardOpenc={cardOpenc} setCardOpenc={setCardOpenc} />
-          <User setisLoggIn={setisLoggIn} setCardOpenf={setCardOpenf} setCardOpenc={setCardOpenc} />
+          <User userName={userName} setisLoggIn={setisLoggIn} setCardOpenf={setCardOpenf} setCardOpenc={setCardOpenc} />
           </div>
         </div>
       </header>

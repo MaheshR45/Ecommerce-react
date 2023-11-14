@@ -5,7 +5,7 @@ import { FavList } from "./favlist"
 import { FaHeart } from "react-icons/fa";
 
 
-const Fav = ({favitems,setFavitems,cardOpenf,setCardOpenf}) => {
+const Fav = ({favitems,setFavitems,cardOpenf,setCardOpenf,setIsFavorite}) => {
  
   const closeCard = () => {
     setCardOpenf(null)
@@ -27,7 +27,7 @@ const Fav = ({favitems,setFavitems,cardOpenf,setCardOpenf}) => {
             <AiOutlineClose className='icon' />
           </button>
         </div>
-          <FavList favitems={favitems} setFavitems={setFavitems}  />
+          <FavList favitems={favitems} setFavitems={setFavitems} setIsFavorite={setIsFavorite} setCardOpenf={setCardOpenf} />
       </div>
     </>
   )

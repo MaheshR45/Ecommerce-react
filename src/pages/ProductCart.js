@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { AiOutlinePlusCircle, AiFillHeart ,AiOutlineClose} from "react-icons/ai";
+import { AiOutlinePlusCircle, AiFillHeart, AiOutlineClose } from "react-icons/ai";
+import { BiShoppingBag } from "react-icons/bi"
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 
 import "./productcart.css"; // Import a CSS file for styling
 
-export const ProductCart = ({ data, key, id, cover, name, price, addToCart, addToFavorites }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [iscart, setIsCart] = useState(false);
+export const ProductCart = ({ data, key, id, cover, name, price, cartitems, favitems, addToCart, addToFavorites }) => {
+ 
   const [isProductDetailsOpen, setIsProductDetailsOpen] = useState(false);
 
   const handleAddToCart = () => {
     addToCart(data);
-    setIsCart(true);
+ 
   };
 
   const handleAddToFavorites = () => {
     addToFavorites(data);
-    setIsFavorite(true);
+   
   };
 
   const handleProductDetailsClick = () => {
@@ -28,10 +28,20 @@ export const ProductCart = ({ data, key, id, cover, name, price, addToCart, addT
     setIsProductDetailsOpen(false);
   };
 
+  const isItemInCart = () => {
+    // Assuming data.id is unique for each product
+    return cartitems.some(item => item.id === data.id);
+  };
+
+  const isItemInFavorites = () => {
+    // Assuming data.id is unique for each product
+    return favitems.some(item => item.id === data.id);
+  };
+
   return (
     <>
       <div className="box boxItems" id="product">
-        <div className="img"  onClick={handleProductDetailsClick}>
+        <div className="img" onClick={handleProductDetailsClick}>
           <Link>
             <img src={cover} alt="cover" />
           </Link>
@@ -40,10 +50,10 @@ export const ProductCart = ({ data, key, id, cover, name, price, addToCart, addT
           <h3>${price}</h3>
           <p>{name}</p>
           <button onClick={handleAddToCart}>
-            {iscart ? <AiOutlinePlusCircle style={{ color: "red" }} /> : <AiOutlinePlusCircle />}
+            <BiShoppingBag style={{ color: isItemInCart() ? 'red' : 'black' }} />
           </button>
           <button onClick={handleAddToFavorites}>
-            {isFavorite ? <AiFillHeart style={{ color: "red" }} /> : <FaHeart />}
+            <AiFillHeart style={{ color: isItemInFavorites() ? 'red' : 'black' }} />
           </button>
         </div>
       </div>
@@ -60,11 +70,11 @@ export const ProductCart = ({ data, key, id, cover, name, price, addToCart, addT
             </div>
             <img src={cover} alt="cover" />
             <button onClick={handleAddToCart}>
-            {iscart ? <AiOutlinePlusCircle style={{ color: "red" }} /> : <AiOutlinePlusCircle />}
-          </button>
-          <button onClick={handleAddToFavorites}>
-            {isFavorite ? <AiFillHeart style={{ color: "red" }} /> : <FaHeart />}
-          </button>
+              <AiOutlinePlusCircle style={{ color: isItemInCart() ? 'red' : 'black' }} />
+            </button>
+            <button onClick={handleAddToFavorites}>
+              <AiFillHeart style={{ color: isItemInFavorites() ? 'red' : 'black' }} />
+            </button>
           </div>
         </div>
       )}
